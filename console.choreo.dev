@@ -1,0 +1,21 @@
+import requests
+
+# Replace with your actual Choreo API endpoint and credentials
+url = "https://api.choreo.io/v1/workflows/execute"
+headers = {"Authorization": "Bearer YOUR_API_KEY"}
+data = {
+    "workflowId": "your_workflow_id", 
+    "inputParameters": { 
+        # ... your input parameters 
+    }
+}
+
+response = requests.post(url, headers=headers, json=data)
+
+if response.status_code == 200:
+    print("Workflow executed successfully.")
+    # Extract execution ID from response
+    execution_id = response.json()["executionId"]
+    # Monitor execution status (e.g., using a loop and API calls)
+else:
+    print(f"Error executing workflow: {response.status_code} - {response.text}")
